@@ -1,0 +1,80 @@
+.PromotePinned svg {
+	stroke-width: 2px;
+}
+
+.PromotePinned strong {
+	font-weight: 700;
+	color: #C7C4C4;
+	margin: 0 0 0 5px;
+}
+
+.PromotePinned.--Enabled strong {
+	color: #F0CE15;
+}
+
+.PromotePinned.--Enabled svg {
+	stroke: #F0CE15 !important;
+}
+
+.Note {
+	position: relative;
+}
+
+.NoteButtons {
+	transition: opacity .1s ease;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.--Pinned .NoteButtons {
+	pointer-events: auto;
+	opacity: 1;
+	right: 20px;
+}
+
+.--Pinned .NoteButtons .Trash {
+	display: none;
+}
+
+.Note:hover .NoteButtons {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.Note:hover .NoteButtons,
+.Note:hover .NoteButtons * {
+	cursor: pointer;
+}
+
+.NoteButtons span {
+	margin-left: 11px;
+}
+
+.NoteButtons .Trash svg {
+	width: 15px;
+	height: 16px;
+	fill: #EF4E65;
+}
+
+.NoteButtons .Trash:hover svg {
+	fill: #ba3e51;
+}
+
+.NoteButtons .Pin svg {
+	width: 16px;
+	height: 16px;
+	stroke: #C7C4C4;
+	fill: none;
+	stroke-width: 2px;
+}
+
+.NoteButtons .Pin:hover svg {
+	stroke: #9f9c9c;
+}
+
+.--Pinned .NoteButtons .Pin svg {
+	stroke: #F0CE15;
+}
