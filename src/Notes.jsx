@@ -11,6 +11,7 @@ import React, {Component, Fragment} from 'local/node_modules/react';
 import Note from './Note';
 import classnames from 'classnames';
 import {ipcRenderer} from 'electron';
+import confirm from 'local/renderer/confirm';
 
 export default class Notes extends Component {
 
@@ -126,18 +127,24 @@ export default class Notes extends Component {
 
 	onDeleteNote(note) {
 
-		const notes = this.state.notes;
-		const noteIndex = notes.indexOf(note);
+		confirm({
+			title: 'Are you sure you want to delete this note?',
+			buttonText: 'Delete Note',
+			topIconColor: 'Orange',
+		}).then(() => {
+			const notes = this.state.notes;
+			const noteIndex = notes.indexOf(note);
 
-		if (noteIndex === -1) {
-			return;
-		}
+			if (noteIndex === -1) {
+				return;
+			}
 
-		notes.splice(noteIndex, 1);
+			notes.splice(noteIndex, 1);
 
-		this.setState({
-			notes,
-		}, this.syncNotesToSite);
+			this.setState({
+				notes,
+			}, this.syncNotesToSite);
+		});
 
 	}
 
