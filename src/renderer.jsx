@@ -10,7 +10,7 @@ export default function (context) {
 		return <link rel="stylesheet" href={stylesheetPath}/>;
 	});
 
-	hooks.addContent('siteInfoSetup', (site) => {
+	hooks.addContent('SiteInfoOverview', (site) => {
 		return <Notes key="notes" site={site} />
 	});
 
