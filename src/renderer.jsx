@@ -7,7 +7,7 @@ export default function (context) {
 	const stylesheetPath = path.resolve(__dirname, '../style.css');
 
 	hooks.addContent('stylesheets', () => {
-		return <link rel="stylesheet" href={stylesheetPath}/>;
+		return <link rel="stylesheet" key="notes-addon-styleesheet" href={stylesheetPath}/>;
 	});
 
 	hooks.addContent('SiteInfoOverview', (site) => {
