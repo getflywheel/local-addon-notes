@@ -35,7 +35,7 @@ export default class Notes extends Component {
 
 	}
 
-	componentWillReceiveProps(previousProps) {
+	componentDidUpdate(previousProps) {
 
 		if (previousProps.site.id !== this.props.site.id) {
 			this.setState({
