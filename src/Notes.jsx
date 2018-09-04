@@ -241,7 +241,7 @@ export default class Notes extends Component {
 						  onKeyPress={this.onTextareaKeyPress}/>
 
 				<p className="FormattingHelp">
-					<a href="#"><strong>Markdown</strong></a> supported
+					<a href="https://en.wikipedia.org/wiki/Markdown#Example"><strong>Markdown</strong></a> supported
 				</p>
 			</InnerPaneSidebarAddNew>
 
