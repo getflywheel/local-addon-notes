@@ -30,8 +30,12 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"dateformat": "^3.0.3",
+		"local-components": "https://github.com/getflywheel/local-components.git#1.0.1",
+		"prop-types": "^15.6.2",
 		"react": "^16.4.2",
-		"react-marked-markdown": "^1.4.6"
+		"react-dom": "^16.4.2",
+		"react-marked-markdown": "^1.4.6",
+		"react-router": "3.2.0"
 	},
 	"engines": {
 		"local-by-flywheel": "^2.3.3"

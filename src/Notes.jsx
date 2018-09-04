@@ -2,12 +2,12 @@ import {
 	InnerPaneSidebar,
 	InnerPaneSidebarHeader,
 	InnerPaneSidebarAddNew,
-	InnerPaneSidebarContent
-} from 'local/renderer/components/InnerPaneSidebar';
+	InnerPaneSidebarContent,
+	EmptyArea,
+	Button,
+} from 'local-components';
 
-import EmptyArea from 'local/renderer/components/EmptyArea';
-import Button from 'local/renderer/components/Button';
-import React, {Component, Fragment} from 'local/node_modules/react';
+import React, {Component, Fragment} from 'react';
 import Note from './Note';
 import classnames from 'classnames';
 import {ipcRenderer} from 'electron';

@@ -1,5 +1,6 @@
 import Notes from './Notes';
 import path from 'path';
+import React, {Component, Fragment} from 'react';
 
 export default function (context) {
 

@@ -1,7 +1,7 @@
-import { InnerPaneSidebarContentItem } from 'local/renderer/components/InnerPaneSidebar';
-import React, {Component, Fragment} from 'local/node_modules/react';
+import { InnerPaneSidebarContentItem } from 'local-components';
+import React, {Component, Fragment} from 'react';
 import {  MarkdownPreview  } from 'react-marked-markdown';
-import PropTypes from 'local/node_modules/prop-types';
+import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import classnames from 'classnames';
 
