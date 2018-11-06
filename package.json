@@ -30,7 +30,7 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"dateformat": "^3.0.3",
-		"local-components": "https://github.com/getflywheel/local-components.git#1.0.1",
+		"local-components": "https://github.com/getflywheel/local-components.git#327759c50e7fe55e8ecc47192e7e4a18cec8bf30",
 		"prop-types": "^15.6.2",
 		"react": "^16.4.2",
 		"react-dom": "^16.4.2",

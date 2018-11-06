@@ -12,6 +12,7 @@ import Note from './Note';
 import classnames from 'classnames';
 import {ipcRenderer} from 'electron';
 import confirm from 'local/renderer/confirm';
+import path from 'path';
 
 export default class Notes extends Component {
 
@@ -219,7 +220,7 @@ export default class Notes extends Component {
 				{this.pinnedNotesCount() ? <strong>{this.pinnedNotesCount()}</strong> : ''}
 			</span>
 
-			<span onClick={this.toggleAddNew} className="Add">
+			<span onClick={this.toggleAddNew} className="InnerPaneSidebarHeaderButtons_Add">
 				<svg viewBox="0 0 24 24">
 					<use href={`file://${path.resolve(__filename, '../../assets/add.svg')}#add`}/>
 				</svg>
@@ -230,7 +231,7 @@ export default class Notes extends Component {
 
 	render() {
 
-		return <InnerPaneSidebar className={classnames({ '--AddNewOpen': this.state.addNewOpen })}>
+		return <InnerPaneSidebar className={classnames({ '__AddNewOpen': this.state.addNewOpen })}>
 			<InnerPaneSidebarHeader title="Notes">
 				{this.renderButtons()}
 			</InnerPaneSidebarHeader>
