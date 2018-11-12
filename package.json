@@ -1,7 +1,7 @@
 {
 	"name": "local-addon-notes",
 	"productName": "Notes",
-	"version": "0.9.0",
+	"version": "0.10.0",
 	"author": "Fancy Chap, Inc.",
 	"keywords": [
 		"local-addon"
