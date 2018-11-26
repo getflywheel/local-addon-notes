@@ -27,14 +27,16 @@
 		"babel-preset-react": "^6.11.1",
 		"babel-preset-stage-0": "^6.5.0"
 	},
+	"peerDependencies": {
+		"react": ">= 16.4.0",
+		"react-dom": ">= 16.4.0",
+		"react-router-dom": "^4.3.1"
+	},
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"dateformat": "^3.0.3",
 		"local-components": "https://github.com/getflywheel/local-components.git",
-		"prop-types": "^15.6.2",
-		"react": "^16.4.2",
-		"react-dom": "^16.4.2",
-		"react-router": "3.2.0"
+		"prop-types": "^15.6.2"
 	},
 	"engines": {
 		"local-by-flywheel": "^2.3.3"
