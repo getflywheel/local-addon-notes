@@ -1,6 +1,5 @@
-import { InnerPaneSidebarContentItem } from 'local-components';
-import React, {Component, Fragment} from 'react';
-import {  MarkdownPreview  } from 'react-marked-markdown';
+import { InnerPaneSidebarContentItem, Markdown } from 'local-components';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import classnames from 'classnames';
@@ -37,7 +36,7 @@ export default class Note extends Component {
 
 				{this.renderButtons()}
 
-				<MarkdownPreview value={this.props.body} />
+				<Markdown src={this.props.body} />
 			</InnerPaneSidebarContentItem>;
 
 	}
