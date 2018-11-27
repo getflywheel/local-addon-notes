@@ -2,10 +2,12 @@
 	"name": "local-addon-notes",
 	"productName": "Notes",
 	"version": "0.10.0",
-	"author": "Fancy Chap, Inc.",
+	"author": "Clay Griffiths",
 	"keywords": [
 		"local-addon"
 	],
+	"bgColor": "#51bb7b",
+	"icon": "icon.svg",
 	"description": "Add notes to your Local by Flywheel sites!",
 	"renderer": "lib/renderer.js",
 	"main": "lib/main.js",
