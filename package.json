@@ -21,7 +21,8 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "babel src -d lib",
-		"watch": "yarn run build --watch"
+		"watch": "yarn run build --watch",
+		"prepare": "npm run build"
 	},
 	"devDependencies": {
 		"@getflywheel/eslint-config-local": "1.0.4",
