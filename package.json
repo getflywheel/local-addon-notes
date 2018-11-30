@@ -1,7 +1,7 @@
 {
 	"name": "local-addon-notes",
 	"productName": "Notes",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Clay Griffiths",
 	"keywords": [
 		"local-addon"
