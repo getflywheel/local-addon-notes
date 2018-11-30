@@ -1,4 +1,4 @@
-import { InnerPaneSidebarContentItem, Markdown } from 'local-components';
+import { InnerPaneSidebarContentItem, Markdown } from '@getflywheel/local-components';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';

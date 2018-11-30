@@ -5,7 +5,7 @@ import {
 	InnerPaneSidebarContent,
 	EmptyArea,
 	Button,
-} from 'local-components';
+} from '@getflywheel/local-components';
 
 import React, { Component, Fragment } from 'react';
 import Note from './Note';
