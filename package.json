@@ -46,6 +46,12 @@
 		"local-components": "https://github.com/getflywheel/local-components.git",
 		"prop-types": "^15.6.2"
 	},
+	"bundledDependencies": [
+		"classnames",
+		"dateformat",
+		"local-components",
+		"prop-types"
+	],
 	"engines": {
 		"local-by-flywheel": "^2.3.3"
 	}
