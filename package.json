@@ -43,13 +43,13 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"dateformat": "^3.0.3",
-		"local-components": "https://github.com/getflywheel/local-components.git",
+		"@getflywheel/local-components": "^6.0.0",
 		"prop-types": "^15.6.2"
 	},
 	"bundledDependencies": [
 		"classnames",
 		"dateformat",
-		"local-components",
+		"@getflywheel/local-components",
 		"prop-types"
 	],
 	"engines": {

@@ -95,6 +95,23 @@
   resolved "https://registry.yarnpkg.com/@getflywheel/eslint-config-local/-/eslint-config-local-1.0.4.tgz#2fab6bb77b63ec123e831534f50e1d3c7c135571"
   integrity sha512-GvnhhT3XaNipDdVvHifWbKjoFpLAbezkKsYBGfDF4uG/9gWo5UX9YLANPlzSLRyvgBrX0+27S5Cu8YE/yM7kPg==
 
+"@getflywheel/local-components@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@getflywheel/local-components/-/local-components-6.0.0.tgz#65a5e7136be1a588a0695b54b896b59dd17d1c4a"
+  integrity sha512-XC49brKo0cdefXgFo4jwqdhZnMMMqOLiPAtepDs5w6Sp2Mz9YN4N+CpUHgYVj3cqRmpe9DKBfdvX2f3XxU6d1w==
+  dependencies:
+    classnames "^2.2.6"
+    highlight.js "^9.13.1"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.6.2"
+    react-hot-loader "^4.3.6"
+    react-lowlight "^2.0.0"
+    react-markdown "^4.0.3"
+    react-modal "^3.5.1"
+    react-router-dom "^4.3.1"
+    react-truncate-markup "^2.0.1"
+    url-parse "^1.4.4"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -2234,21 +2251,6 @@ load-json-file@^2.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
-"local-components@https://github.com/getflywheel/local-components.git":
-  version "3.0.0"
-  resolved "https://github.com/getflywheel/local-components.git#4d468f09a7fba90f2395c4db3110dc5c4c58eef4"
-  dependencies:
-    classnames "^2.2.6"
-    highlight.js "^9.13.1"
-    prop-types "^15.6.2"
-    react-hot-loader "^4.3.6"
-    react-lowlight "^2.0.0"
-    react-markdown "^4.0.3"
-    react-modal "^3.5.1"
-    react-router-dom "^4.3.1"
-    react-truncate-markup "^2.0.1"
-    url-parse "^1.4.4"
-
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -2256,6 +2258,11 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
   version "4.17.11"
