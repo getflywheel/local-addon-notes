@@ -7,16 +7,16 @@ import {
 	Button,
 } from 'local-components';
 
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import Note from './Note';
 import classnames from 'classnames';
-import {ipcRenderer} from 'electron';
+import { ipcRenderer } from 'electron';
 import confirm from 'local/renderer/confirm';
 import path from 'path';
 
 export default class Notes extends Component {
 
-	constructor(props) {
+	constructor (props) {
 
 		super(props);
 
@@ -36,7 +36,7 @@ export default class Notes extends Component {
 
 	}
 
-	componentDidUpdate(previousProps) {
+	componentDidUpdate (previousProps) {
 
 		if (previousProps.site.id !== this.props.site.id) {
 			this.setState({
@@ -46,7 +46,7 @@ export default class Notes extends Component {
 
 	}
 
-	syncNotesToSite() {
+	syncNotesToSite () {
 		ipcRenderer.send('update-site-notes', this.props.site.id, this.state.notes);
 	}
 
@@ -58,7 +58,7 @@ export default class Notes extends Component {
 			return [];
 		}
 
-		for ( const [noteIndex, note] of notes.entries() ) {
+		for (const [noteIndex, note] of notes.entries()) {
 			if (note.date instanceof Date || !note.date) {
 				continue;
 			}
@@ -70,7 +70,7 @@ export default class Notes extends Component {
 
 	}
 
-	addNote(body) {
+	addNote (body) {
 
 		const notes = this.state.notes.concat([{
 			date: new Date(),
@@ -86,7 +86,7 @@ export default class Notes extends Component {
 
 	}
 
-	openAddNew() {
+	openAddNew () {
 
 		this.setState({
 			addNewOpen: true,
@@ -108,13 +108,13 @@ export default class Notes extends Component {
 
 	}
 
-	onTextareaChange(event) {
+	onTextareaChange (event) {
 		this.setState({
 			textareaValue: event.target.value,
 		});
 	}
 
-	onTextareaKeyPress(event) {
+	onTextareaKeyPress (event) {
 
 		if (event.key !== 'Enter' || event.altKey || event.shiftKey) {
 			return;
@@ -126,7 +126,7 @@ export default class Notes extends Component {
 
 	}
 
-	onDeleteNote(note) {
+	onDeleteNote (note) {
 
 		confirm({
 			title: 'Are you sure you want to delete this note?',
@@ -149,7 +149,7 @@ export default class Notes extends Component {
 
 	}
 
-	onPinNote(note) {
+	onPinNote (note) {
 
 		const notes = this.state.notes;
 		const noteIndex = this.state.notes.indexOf(note);
@@ -166,7 +166,7 @@ export default class Notes extends Component {
 
 	}
 
-	getNotesInOrder() {
+	getNotesInOrder () {
 
 		const notes = this.state.notes.slice(0);
 
@@ -182,13 +182,11 @@ export default class Notes extends Component {
 			});
 		}
 
-		return notes.sort((a, b) => {
-			return b.date - a.date;
-		});
+		return notes.sort((a, b) => b.date - a.date);
 
 	}
 
-	renderNotes() {
+	renderNotes () {
 
 		if (!this.state.notes || !this.state.notes.length) {
 			return !this.state.addNewOpen && <EmptyArea border={false}>
@@ -205,15 +203,15 @@ export default class Notes extends Component {
 
 	}
 
-	pinnedNotesCount() {
+	pinnedNotesCount () {
 		return this.state.notes.filter((note) => note.pinned).length;
 	}
 
-	renderButtons() {
+	renderButtons () {
 
 		return <Fragment>
-			<span onClick={() => this.setState({promotePinned: !this.state.promotePinned})}
-				  className={classnames('PromotePinned', {'--Enabled': this.state.promotePinned})}>
+			<span onClick={() => this.setState({ promotePinned: !this.state.promotePinned })}
+				  className={classnames('PromotePinned', { '--Enabled': this.state.promotePinned })}>
 				<svg>
 					<use href={`file://${path.resolve(__filename, '../../assets/pin.svg')}#pin`}/>
 				</svg>
@@ -229,7 +227,7 @@ export default class Notes extends Component {
 
 	}
 
-	render() {
+	render () {
 
 		return <InnerPaneSidebar className={classnames({ '__AddNewOpen': this.state.addNewOpen })}>
 			<InnerPaneSidebarHeader title="Notes">

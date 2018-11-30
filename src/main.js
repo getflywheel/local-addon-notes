@@ -9,6 +9,6 @@ export default function (context) {
 		siteData.updateSite(siteId, {
 			notes,
 		});
-	})
+	});
 
 }
