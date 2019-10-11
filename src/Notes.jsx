@@ -11,12 +11,12 @@ import React, { Component, Fragment } from 'react';
 import Note from './Note';
 import classnames from 'classnames';
 import { ipcRenderer } from 'electron';
-import confirm from 'local/renderer/confirm';
+import { confirm } from '@getflywheel/local/renderer';
 import path from 'path';
 
 export default class Notes extends Component {
 
-	constructor (props) {
+	constructor(props) {
 
 		super(props);
 
@@ -36,7 +36,7 @@ export default class Notes extends Component {
 
 	}
 
-	componentDidUpdate (previousProps) {
+	componentDidUpdate(previousProps) {
 
 		if (previousProps.site.id !== this.props.site.id) {
 			this.setState({
@@ -46,11 +46,11 @@ export default class Notes extends Component {
 
 	}
 
-	syncNotesToSite () {
+	syncNotesToSite() {
 		ipcRenderer.send('update-site-notes', this.props.site.id, this.state.notes);
 	}
 
-	fetchSiteNotes () {
+	fetchSiteNotes() {
 
 		const notes = this.props.site.notes;
 
@@ -70,7 +70,7 @@ export default class Notes extends Component {
 
 	}
 
-	addNote (body) {
+	addNote(body) {
 
 		const notes = this.state.notes.concat([{
 			date: new Date(),
@@ -86,7 +86,7 @@ export default class Notes extends Component {
 
 	}
 
-	openAddNew () {
+	openAddNew() {
 
 		this.setState({
 			addNewOpen: true,
@@ -96,7 +96,7 @@ export default class Notes extends Component {
 
 	}
 
-	toggleAddNew () {
+	toggleAddNew() {
 
 		if (this.state.addNewOpen) {
 			return this.setState({
@@ -108,13 +108,13 @@ export default class Notes extends Component {
 
 	}
 
-	onTextareaChange (event) {
+	onTextareaChange(event) {
 		this.setState({
 			textareaValue: event.target.value,
 		});
 	}
 
-	onTextareaKeyPress (event) {
+	onTextareaKeyPress(event) {
 
 		if (event.key !== 'Enter' || event.altKey || event.shiftKey) {
 			return;
@@ -126,7 +126,7 @@ export default class Notes extends Component {
 
 	}
 
-	onDeleteNote (note) {
+	onDeleteNote(note) {
 
 		confirm({
 			title: 'Are you sure you want to delete this note?',
@@ -149,7 +149,7 @@ export default class Notes extends Component {
 
 	}
 
-	onPinNote (note) {
+	onPinNote(note) {
 
 		const notes = this.state.notes;
 		const noteIndex = this.state.notes.indexOf(note);
@@ -166,7 +166,7 @@ export default class Notes extends Component {
 
 	}
 
-	getNotesInOrder () {
+	getNotesInOrder() {
 
 		const notes = this.state.notes.slice(0);
 
@@ -186,48 +186,48 @@ export default class Notes extends Component {
 
 	}
 
-	renderNotes () {
+	renderNotes() {
 
 		if (!this.state.notes || !this.state.notes.length) {
 			return !this.state.addNewOpen && <EmptyArea border={false}>
-				No notes added<br/>
-				to this site<br/><br/>
+				No notes added<br />
+				to this site<br /><br />
 				<Button className="--GrayOutline" onClick={this.openAddNew}>+ Add Note</Button>
 			</EmptyArea>;
 		}
 
 		return this.getNotesInOrder().map((note) => (
 			<Note key={note.date.toJSON()} date={note.date} body={note.body}
-				  pinned={note.pinned} onDelete={() => this.onDeleteNote(note)} onPin={() => this.onPinNote(note)}/>
+				pinned={note.pinned} onDelete={() => this.onDeleteNote(note)} onPin={() => this.onPinNote(note)} />
 		));
 
 	}
 
-	pinnedNotesCount () {
+	pinnedNotesCount() {
 		return this.state.notes.filter((note) => note.pinned).length;
 	}
 
-	renderButtons () {
+	renderButtons() {
 
 		return <Fragment>
 			<span onClick={() => this.setState({ promotePinned: !this.state.promotePinned })}
-				  className={classnames('PromotePinned', { '--Enabled': this.state.promotePinned })}>
+				className={classnames('PromotePinned', { '--Enabled': this.state.promotePinned })}>
 				<svg>
-					<use href={`file://${path.resolve(__filename, '../../assets/pin.svg')}#pin`}/>
+					<use href={`file://${path.resolve(__filename, '../../assets/pin.svg')}#pin`} />
 				</svg>
 				{this.pinnedNotesCount() ? <strong>{this.pinnedNotesCount()}</strong> : ''}
 			</span>
 
 			<span onClick={this.toggleAddNew} className="InnerPaneSidebarHeaderButtons_Add">
 				<svg viewBox="0 0 24 24">
-					<use href={`file://${path.resolve(__filename, '../../assets/add.svg')}#add`}/>
+					<use href={`file://${path.resolve(__filename, '../../assets/add.svg')}#add`} />
 				</svg>
 			</span>
 		</Fragment>;
 
 	}
 
-	render () {
+	render() {
 
 		return <InnerPaneSidebar className={classnames({ '__AddNewOpen': this.state.addNewOpen })}>
 			<InnerPaneSidebarHeader title="Notes">
@@ -236,8 +236,8 @@ export default class Notes extends Component {
 
 			<InnerPaneSidebarAddNew>
 				<textarea placeholder="Add a note..." value={this.state.textareaValue} onChange={this.onTextareaChange}
-						  ref={this.textareaRef}
-						  onKeyPress={this.onTextareaKeyPress}/>
+					ref={this.textareaRef}
+					onKeyPress={this.onTextareaKeyPress} />
 
 				<p className="FormattingHelp">
 					<a href="https://en.wikipedia.org/wiki/Markdown#Example"><strong>Markdown</strong></a> supported
@@ -252,4 +252,3 @@ export default class Notes extends Component {
 	}
 
 }
-

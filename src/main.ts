@@ -1,12 +1,13 @@
-import siteData from 'local/helpers/site-data';
+import { SiteData } from '@getflywheel/local/main';
 
-export default function (context) {
+export default function(context) {
 
 	const { electron } = context;
 	const { ipcMain } = electron;
 
 	ipcMain.on('update-site-notes', (event, siteId, notes) => {
-		siteData.updateSite(siteId, {
+		SiteData.updateSite(siteId, {
+			id: siteId,
 			notes,
 		});
 	});
