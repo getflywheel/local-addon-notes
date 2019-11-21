@@ -14,7 +14,7 @@ Clone the repository into the following directory depending on your platform:
 ## Development
 
 ### Folder Structure
-All files in `/src` will be transpiled to `/lib` using [Babel](https://github.com/babel/babel/). Anything in `/lib` will be overwritten.
+All files in `/src` will be transpiled to `/lib` using [Babel](https://github.com/babel/babel/) after running `yarn watch` or `yarn build`. Anything in `/lib` will be overwritten.
 
 
 ## License
