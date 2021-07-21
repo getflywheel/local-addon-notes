@@ -32,7 +32,7 @@ export default class Note extends Component {
 	render () {
 
 		return <InnerPaneSidebarContentItem className={classnames('Note', { '__Pinned': this.props.pinned })}>
-			<h5 className="Date">{dateFormat(this.props.date, 'mmmm dS, yyyy')}</h5>
+			<h5 className="Date hideOnSpectron">{dateFormat(this.props.date, 'mmmm dS, yyyy')}</h5>
 
 			{this.renderButtons()}
 
