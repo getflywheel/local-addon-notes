@@ -20,9 +20,17 @@ export default class Notes extends Component {
 
 		super(props);
 
+		const notes = this.fetchSiteNotes();
+
+		if( notes ) {
+			for (const [noteIndex, note] of notes.entries()) {
+				notes[noteIndex].editing = false;
+			}
+		}
+
 		this.state = {
 			promotePinned: false,
-			notes: this.fetchSiteNotes(),
+			notes: notes,
 			textareaValue: '',
 			addNewOpen: false,
 		};
@@ -76,6 +84,7 @@ export default class Notes extends Component {
 			date: new Date(),
 			body,
 			pinned: false,
+			editing: false,
 		}]);
 
 		this.setState({
@@ -149,6 +158,58 @@ export default class Notes extends Component {
 
 	}
 
+	onEditNote(note) {
+
+		const notes = this.state.notes;
+		const noteIndex = this.state.notes.indexOf(note);
+
+		if (noteIndex === -1) {
+			return;
+		}
+
+		// switch edit mode
+		notes[noteIndex].editing = true;
+
+		// todo set autofocus on textarea (like textareaRef)
+
+		this.setState({
+			notes,
+		}, this.syncNotesToSite);
+
+	}
+
+	onSaveNote(note) {
+
+		const notes = this.state.notes;
+		const noteIndex = this.state.notes.indexOf(note);
+
+		if (noteIndex === -1) {
+			return;
+		}
+
+		// switch edit mode
+		notes[noteIndex].editing = false;
+
+		this.setState({
+			notes,
+		}, this.syncNotesToSite);
+
+	}
+
+	onChangeBodyNote(note, event) {
+
+		const notes = this.state.notes;
+		const noteIndex = this.state.notes.indexOf(note);
+
+		if (noteIndex === -1) {
+			return;
+		}
+
+		// switch edit mode
+		notes[noteIndex].body = event.target.value;
+
+	}
+
 	onPinNote(note) {
 
 		const notes = this.state.notes;
@@ -198,7 +259,9 @@ export default class Notes extends Component {
 
 		return this.getNotesInOrder().map((note) => (
 			<Note key={note.date.toJSON()} date={note.date} body={note.body}
-				pinned={note.pinned} onDelete={() => this.onDeleteNote(note)} onPin={() => this.onPinNote(note)} />
+				pinned={note.pinned} onPin={() => this.onPinNote(note)}
+				editing={note.editing} onEdit={() => this.onEditNote(note)} onSave={() => this.onSaveNote(note)}
+				onChangeBody={(event) => this.onChangeBodyNote(note, event)} onDelete={() => this.onDeleteNote(note)} />
 		));
 
 	}
