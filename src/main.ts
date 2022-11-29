@@ -1,15 +1,15 @@
-import { SiteData } from '@getflywheel/local/main';
+import * as Local from "@getflywheel/local";
+import { getServiceContainer } from "@getflywheel/local/main";
 
-export default function(context) {
-
+export default function (context) {
 	const { electron } = context;
-	const { ipcMain } = electron;
 
-	ipcMain.on('update-site-notes', (event, siteId, notes) => {
-		SiteData.updateSite(siteId, {
+	const siteData = getServiceContainer().cradle.siteData;
+
+	electron.ipcMain.on("update-site-notes", (event, siteId, notes) => {
+		siteData.updateSite(siteId, {
 			id: siteId,
 			notes,
-		});
+		} as Partial<Local.SiteJSON>);
 	});
-
 }
