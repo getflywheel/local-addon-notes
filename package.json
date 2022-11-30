@@ -53,6 +53,7 @@
 	},
 	"bundledDependencies": [
 		"classnames",
+		"lodash",
 		"dateformat",
 		"@getflywheel/local-components",
 		"prop-types"
