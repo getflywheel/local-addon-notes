@@ -94,3 +94,15 @@
 .__Pinned .NoteButtons .Pin svg {
 	stroke: #F0CE15;
 }
+
+.NoteButtons .Edit svg {
+	width: 16px;
+	height: 16px;
+	color: #f9a57e;
+}
+.NoteButtons .Edit svg use {
+	color: currentColor;
+}
+.NoteButtons .Edit:hover svg {
+	color: #c38263;
+}

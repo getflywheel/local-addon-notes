@@ -14,25 +14,45 @@ import { ipcRenderer } from 'electron';
 import { confirm } from '@getflywheel/local/renderer';
 import path from 'path';
 
+/**
+ * @typedef {{
+*   body: string,
+*   date: Date,
+*   editing: boolean,
+*   pinned: boolean,
+* }} NoteData
+* */
+
+// The Note editor can be in these states...
+const EDITOR_STATES = {
+	IDLE: 'idle',
+	ADDING_NEW: 'adding-new',
+	EDITING_EXISTING: 'editing-existing',
+};
+
 export default class Notes extends Component {
 
 	constructor(props) {
 
 		super(props);
 
+		/** @type {NoteData[]} */
+		const notes = this.fetchSiteNotes();
+
 		this.state = {
 			promotePinned: false,
-			notes: this.fetchSiteNotes(),
+			notes,
 			textareaValue: '',
-			addNewOpen: false,
+			editorState: EDITOR_STATES.IDLE,
+			editingNoteIndex: null,
 		};
 
 		this.textareaRef = React.createRef();
 
 		this.onTextareaChange = this.onTextareaChange.bind(this);
 		this.onTextareaKeyPress = this.onTextareaKeyPress.bind(this);
-		this.openAddNew = this.openAddNew.bind(this);
-		this.toggleAddNew = this.toggleAddNew.bind(this);
+		this.onAddNoteOrCloseEditorClick = this.onAddNoteOrCloseEditorClick.bind(this);
+		this.onEditNoteClick = this.onEditNoteClick.bind(this);
 
 	}
 
@@ -81,30 +101,27 @@ export default class Notes extends Component {
 		this.setState({
 			notes,
 			textareaValue: '',
-			addNewOpen: false,
+			editorState: EDITOR_STATES.IDLE,
 		}, this.syncNotesToSite);
 
 	}
 
-	openAddNew() {
+	updateNote(body) {
 
-		this.setState({
-			addNewOpen: true,
-		}, () => {
-			this.textareaRef.current.focus();
+		const /** @type {number} */ editingNoteIndex = this.state.editingNoteIndex;
+		const notes = this.state.notes.map((note, i) => {
+			if (i !== editingNoteIndex) return note;
+			return {
+				...note,
+				body,
+			};
 		});
 
-	}
-
-	toggleAddNew() {
-
-		if (this.state.addNewOpen) {
-			return this.setState({
-				addNewOpen: false,
-			});
-		}
-
-		this.openAddNew();
+		this.setState({
+			notes,
+			textareaValue: '',
+			editorState: EDITOR_STATES.IDLE,
+		}, this.syncNotesToSite);
 
 	}
 
@@ -122,8 +139,52 @@ export default class Notes extends Component {
 
 		event.preventDefault();
 
-		this.addNote(this.state.textareaValue);
+		if (this.state.editorState === EDITOR_STATES.ADDING_NEW) {
+			this.addNote(this.state.textareaValue);
+			return;
+		}
 
+		if (this.state.editorState === EDITOR_STATES.EDITING_EXISTING) {
+			this.updateNote(this.state.textareaValue);
+			return;
+		}
+
+		console.log('Unexpected - User clicked Enter while note editor is open and previous code has not handled this case.');
+		console.log({ state: this.state, event });
+		console.log('-----\n');
+
+
+	}
+
+	onAddNoteOrCloseEditorClick() {
+		// NOTE:
+		// In the UI the "Add New Note" button and the "Cancel Editing Note" are the same
+		// DOM node, and on click this function is invoke.
+		// TODO: migrate to two separate button if possible
+
+		// if was open and adding new...
+		if (this.state.editorState === EDITOR_STATES.ADDING_NEW) {
+			this.setState({
+				editorState: EDITOR_STATES.IDLE,
+			});
+			return;
+		}
+
+		// if was open and editing existing...
+		if (this.state.editorState === EDITOR_STATES.EDITING_EXISTING) {
+			this.setState({
+				editorState: EDITOR_STATES.IDLE,
+				textareaValue: '',
+			});
+			return;
+		}
+
+		// otherwsise...
+		this.setState({
+			editorState: EDITOR_STATES.ADDING_NEW,
+		}, () => {
+			this.textareaRef.current.focus();
+		});
 	}
 
 	onDeleteNote(note) {
@@ -166,6 +227,20 @@ export default class Notes extends Component {
 
 	}
 
+	onEditNoteClick(/** @type {NoteData} */ note) {
+
+		const noteIndex = this.state.notes.findIndex(n => n.date === note.date);
+		if (noteIndex === -1) {
+			throw new Error('Unexpected - User clikcke on "Edit" Note but the note is not in the app state! Plase inpsect the code! This must never happens!');
+		}
+
+		this.setState({
+			editorState: EDITOR_STATES.EDITING_EXISTING,
+			editingNoteIndex: noteIndex,
+			textareaValue: note.body ?? '',
+		});
+	}
+
 	getNotesInOrder() {
 
 		const notes = this.state.notes.slice(0);
@@ -189,16 +264,25 @@ export default class Notes extends Component {
 	renderNotes() {
 
 		if (!this.state.notes || !this.state.notes.length) {
-			return !this.state.addNewOpen && <EmptyArea border={false}>
-				No notes added<br />
-				to this site<br /><br />
-				<Button className="--GrayOutline" onClick={this.openAddNew}>+ Add Note</Button>
-			</EmptyArea>;
+			if (this.state.editorState === EDITOR_STATES.IDLE) return (
+				<EmptyArea border={false}>
+					No notes added<br />
+					to this site<br /><br />
+					<Button className="--GrayOutline" onClick={this.onAddNoteOrCloseEditorClick}>+ Add Note</Button>
+				</EmptyArea>
+			);
 		}
 
 		return this.getNotesInOrder().map((note) => (
-			<Note key={note.date.toJSON()} date={note.date} body={note.body}
-				pinned={note.pinned} onDelete={() => this.onDeleteNote(note)} onPin={() => this.onPinNote(note)} />
+			<Note
+				key={note.date.toJSON()}
+				date={note.date}
+				body={note.body}
+				pinned={note.pinned}
+				onDelete={() => this.onDeleteNote(note)}
+				onPin={() => this.onPinNote(note)}
+				onEdit={() => this.onEditNoteClick(note)}
+			/>
 		));
 
 	}
@@ -218,7 +302,7 @@ export default class Notes extends Component {
 				{this.pinnedNotesCount() ? <strong>{this.pinnedNotesCount()}</strong> : ''}
 			</span>
 
-			<span onClick={this.toggleAddNew} className="InnerPaneSidebarHeaderButtons_Add">
+			<span onClick={this.onAddNoteOrCloseEditorClick} className="InnerPaneSidebarHeaderButtons_Add">
 				<svg viewBox="0 0 24 24">
 					<use href={`file://${path.resolve(__filename, '../../assets/add.svg')}#add`} />
 				</svg>
@@ -227,21 +311,33 @@ export default class Notes extends Component {
 
 	}
 
+	renderEditor() {
+		return (
+			<Fragment>
+				<textarea
+					placeholder="Add a note..."
+					value={this.state.textareaValue}
+					onChange={this.onTextareaChange}
+					ref={this.textareaRef}
+					onKeyPress={this.onTextareaKeyPress}
+				/>
+
+				<p className="FormattingHelp">
+					<a href="https://en.wikipedia.org/wiki/Markdown#Example"><strong>Markdown</strong></a> supported
+				</p>
+			</Fragment>
+		);
+	}
+
 	render() {
 
-		return <InnerPaneSidebar className={classnames({ '__AddNewOpen': this.state.addNewOpen })}>
+		return <InnerPaneSidebar className={classnames({ '__AddNewOpen': this.state.editorState !== EDITOR_STATES.IDLE })}>
 			<InnerPaneSidebarHeader title="Notes">
 				{this.renderButtons()}
 			</InnerPaneSidebarHeader>
 
 			<InnerPaneSidebarAddNew>
-				<textarea placeholder="Add a note..." value={this.state.textareaValue} onChange={this.onTextareaChange}
-					ref={this.textareaRef}
-					onKeyPress={this.onTextareaKeyPress} />
-
-				<p className="FormattingHelp">
-					<a href="https://en.wikipedia.org/wiki/Markdown#Example"><strong>Markdown</strong></a> supported
-				</p>
+				{this.renderEditor()}
 			</InnerPaneSidebarAddNew>
 
 			<InnerPaneSidebarContent>
