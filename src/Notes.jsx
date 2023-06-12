@@ -18,7 +18,6 @@ import path from 'path';
  * @typedef {{
 *   body: string,
 *   date: Date,
-*   editing: boolean,
 *   pinned: boolean,
 * }} NoteData
 * */
