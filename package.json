@@ -1,7 +1,7 @@
 {
 	"name": "local-addon-notes",
 	"productName": "Notes",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"author": "Clay Griffiths",
 	"keywords": [
 		"local-addon"
@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@getflywheel/eslint-config-local": "1.0.4",
-		"@getflywheel/local": "^6.6.0",
+		"@getflywheel/local": "^8.0.0",
 		"@types/classnames": "^2.2.9",
 		"@types/dateformat": "^3.0.1",
 		"@types/prop-types": "^15.7.5",
@@ -45,6 +45,7 @@
 	"dependencies": {
 		"@getflywheel/local-components": "^17.6.2",
 		"classnames": "^2.2.6",
+		"lodash": "^4.17.21",
 		"dateformat": "^3.0.3",
 		"prop-types": "^15.6.2",
 		"react": "^16.10.2",
