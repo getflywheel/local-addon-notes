@@ -28,14 +28,14 @@
 	"devDependencies": {
 		"@getflywheel/eslint-config-local": "1.0.4",
 		"@getflywheel/local": "^9",
-		"@types/classnames": "^2.2.9",
-		"@types/dateformat": "^3.0.1",
-		"@types/prop-types": "^15.7.5",
-		"@types/react": "^18.0.25",
-		"eslint": "^5.0.0",
-		"eslint-plugin-import": "^2.14.0",
-		"eslint-plugin-react": "^7.11.1",
-		"typescript": "^3.7.5"
+		"@types/classnames": "^2.3.4",
+		"@types/dateformat": "^5.0.3",
+		"@types/prop-types": "^15.7.14",
+		"@types/react": "^19.0.12",
+		"eslint": "^9.22.0",
+		"eslint-plugin-import": "^2.31.0",
+		"eslint-plugin-react": "^7.37.4",
+		"typescript": "^5.8.2"
 	},
 	"peerDependencies": {
 		"react": ">= 16.4.0",
@@ -44,13 +44,13 @@
 	},
 	"dependencies": {
 		"@getflywheel/local-components": "^17.8.0",
-		"classnames": "^2.2.6",
-		"dateformat": "^3.0.3",
+		"classnames": "^2.5.1",
+		"dateformat": "^5.0.3",
 		"lodash": "^4.17.21",
-		"prop-types": "^15.6.2",
-		"react": "^16.10.2",
-		"react-dom": "^16.10.2",
-		"react-router-dom": "^5.1.2"
+		"prop-types": "^15.8.1",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-router-dom": "^7.4.0"
 	},
 	"bundledDependencies": [
 		"classnames",
