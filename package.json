@@ -29,7 +29,6 @@
 		"@getflywheel/eslint-config-local": "1.0.4",
 		"@getflywheel/local": "^9.2.2",
 		"@types/classnames": "^2.3.4",
-		"@types/dateformat": "^5.0.3",
 		"@types/prop-types": "^15.7.14",
 		"@types/react": "^19.0.12",
 		"eslint": "^9.23.0",
@@ -45,7 +44,6 @@
 	"dependencies": {
 		"@getflywheel/local-components": "^17.8.0",
 		"classnames": "^2.5.1",
-		"dateformat": "^5.0.3",
 		"lodash": "^4.17.21",
 		"prop-types": "^15.6.2",
 		"react": "^19.0.0",
