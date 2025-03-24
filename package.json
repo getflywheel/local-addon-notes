@@ -31,7 +31,7 @@
 		"@types/classnames": "^2.2.9",
 		"@types/dateformat": "^3.0.1",
 		"@types/prop-types": "^15.7.5",
-		"@types/react": "^18.0.25",
+		"@types/react": "^19.0.12",
 		"eslint": "^9.23.0",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-react": "^7.37.4",
