@@ -32,7 +32,7 @@
 		"@types/dateformat": "^3.0.1",
 		"@types/prop-types": "^15.7.5",
 		"@types/react": "^18.0.25",
-		"eslint": "^5.0.0",
+		"eslint": "^9.23.0",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-react": "^7.11.1",
 		"typescript": "^3.7.5"
