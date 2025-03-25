@@ -1,11 +1,13 @@
 import { InnerPaneSidebarContentItem, Markdown } from '@getflywheel/local-components';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import dateFormat from 'dateformat';
 import classnames from 'classnames';
 import path from 'path';
 
 export default class Note extends Component {
+	state = {
+        formattedDate: null,
+    };
 
 	static propTypes = {
 		date: PropTypes.any,
@@ -15,6 +17,18 @@ export default class Note extends Component {
 		onDelete: PropTypes.func,
 		onEdit: PropTypes.func,
 	};
+
+	async componentDidMount() {
+        const date = new Date(this.props.date);
+		this.setState({
+			formattedDate: date.toLocaleDateString('en-US', {
+				month: 'long',
+				day: 'numeric',
+				year: 'numeric'
+			}),
+			isLoading: false
+		});
+    }
 
 	renderButtons() {
 
@@ -35,9 +49,9 @@ export default class Note extends Component {
 	}
 
 	render() {
-
+		const { formattedDate } = this.state
 		return <InnerPaneSidebarContentItem className={classnames('Note', { '__Pinned': this.props.pinned })}>
-			<h5 className="Date hideOnSpectron">{dateFormat(this.props.date, 'mmmm dS, yyyy')}</h5>
+			<h5 className="Date hideOnSpectron">{ formattedDate }</h5>
 
 			{this.renderButtons()}
 
@@ -47,4 +61,3 @@ export default class Note extends Component {
 	}
 
 }
-
