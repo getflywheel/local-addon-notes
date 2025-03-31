@@ -47,9 +47,9 @@
 		"lodash": "^4.17.21",
 		"path-to-regexp": "^8.2.0",
 		"prop-types": "^15.6.2",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
-		"react-router-dom": "^7.4.0"
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"react-router-dom": "^7.4.1"
 	},
 	"bundledDependencies": [
 		"classnames",
@@ -62,6 +62,7 @@
 		"local-by-flywheel": ">=6.5.2"
 	},
 	"resolutions": {
-		"trim": "1.0.1"
+		"trim": "1.0.1",
+		"path-to-regexp": "1.9.0"
 	}
 }
