@@ -62,6 +62,6 @@
 		"local-by-flywheel": ">=6.5.2"
 	},
 	"resolutions": {
-		"trim": "0.3.0"
+		"trim": "1.0.1"
 	}
 }
