@@ -63,6 +63,7 @@
 	},
 	"resolutions": {
 		"trim": "1.0.1",
-		"path-to-regexp": "1.9.0"
+		"path-to-regexp": "1.9.0",
+		"react-router": "7.5.2"
 	}
 }
