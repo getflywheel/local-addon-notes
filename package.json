@@ -59,6 +59,6 @@
 	},
 	"resolutions": {
 		"trim": "1.0.1",
-		"react-router": "7.5.2"
+		"react-router": "7.12.0"
 	}
 }
