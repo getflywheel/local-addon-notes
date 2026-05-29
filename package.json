@@ -26,14 +26,10 @@
 		"prepare": "npm run build"
 	},
 	"devDependencies": {
-		"@getflywheel/eslint-config-local": "1.0.4",
 		"@getflywheel/local": "^9.2.4",
 		"@types/classnames": "^2.3.4",
 		"@types/prop-types": "^15.7.14",
 		"@types/react": "^19.0.12",
-		"eslint": "^9.23.0",
-		"eslint-plugin-import": "^2.31.0",
-		"eslint-plugin-react": "^7.37.4",
 		"typescript": "^5.8.2"
 	},
 	"peerDependencies": {
