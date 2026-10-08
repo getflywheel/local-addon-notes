@@ -3,3 +3,9 @@
 # @getflywheel/local-engineers will be requested for
 # review when someone opens a pull request.
 * @getflywheel/local-engineers
+
+# Dependency files managed by Dependabot — excluded from CODEOWNERS so
+# Dependabot PRs can be approved and merged with GITHUB_TOKEN only.
+# Note: .github/workflows/ is intentionally NOT excluded (security requirement).
+package.json
+yarn.lock

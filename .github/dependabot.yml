@@ -7,16 +7,12 @@ updates:
     cooldown:
       default-days: 7
     groups:
-      all-non-major-updates:
+      all-dependencies:
         patterns:
           - "*"
         update-types:
           - "minor"
           - "patch"
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - "version-update:semver-major"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -24,13 +20,9 @@ updates:
     cooldown:
       default-days: 7
     groups:
-      all-non-major-updates:
+      all-dependencies:
         patterns:
           - "*"
         update-types:
           - "minor"
           - "patch"
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - "version-update:semver-major"
