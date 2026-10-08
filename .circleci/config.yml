@@ -5,7 +5,7 @@ version: 2.1
 # Runs on every PR (including Dependabot) so dependency bumps can be gated on
 # the add-on still installing, building, loading and wiring IPC correctly. The
 # Local runtime and Electron are mocked; the real @getflywheel/local-components
-# and React are exercised. See src/*.test.js and test/.
+# and React are exercised. See test/.
 jobs:
   e2e:
     docker:
