@@ -1,1 +1,7 @@
 .github/
+test/
+jest.config.js
+**/*.test.js
+*.log
+coverage/
+.nyc_output/

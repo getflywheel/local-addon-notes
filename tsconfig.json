@@ -19,7 +19,10 @@
 		"target": "es2015"
 	},
 	"exclude": [
-		"node_modules"
+		"node_modules",
+		"src/**/*.test.js",
+		"src/**/*.spec.js",
+		"test"
 	],
 	"include": [
 		"src"

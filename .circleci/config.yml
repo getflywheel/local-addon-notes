@@ -1,0 +1,36 @@
+version: 2.1
+
+# E2E check for the built add-on.
+#
+# Runs on every PR (including Dependabot) so dependency bumps can be gated on
+# the add-on still installing, building, loading and wiring IPC correctly. The
+# Local runtime and Electron are mocked; the real @getflywheel/local-components
+# and React are exercised. See test/.
+jobs:
+  e2e:
+    docker:
+      - image: cimg/node:22.15
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "yarn.lock" }}
+            - v1-deps-
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build add-on
+          command: yarn build
+      - run:
+          name: Run e2e tests
+          command: yarn test --ci
+
+workflows:
+  e2e:
+    jobs:
+      - e2e
