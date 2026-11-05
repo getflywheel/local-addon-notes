@@ -3079,10 +3079,10 @@ react-router-dom@^7.18.5:
   dependencies:
     react-router "7.18.5"
 
-react-router@5.3.4, react-router@7.12.0, react-router@7.18.5:
-  version "7.12.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.12.0.tgz#459a86862abbedd02e76e686751fe71f9fd73a4f"
-  integrity sha512-kTPDYPFzDVGIIGNLS5VJykK0HfHLY5MF3b+xj0/tTyNYL1gF1qs7u67Z9jEhQk2sQ98SUaHxlG31g1JtF7IfVw==
+react-router@5.3.4, react-router@7.18.5:
+  version "7.18.5"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.18.5.tgz#808611f9f8675fe4506699815168822f4d9f3ee3"
+  integrity sha512-dTgvcXDOrLPrlLHrcZAqWveiK1hMSqN+rGAJzegP8HtmNkfRxOoshGWBNX3ZJ0cZjOHkRdlUJtaIhZMLLyGyPw==
   dependencies:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"
